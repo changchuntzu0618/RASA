@@ -1,0 +1,53 @@
+
+version: "3.1"
+stories:
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_name
+  - intent: say_name
+    entities:
+    - name: Alice
+  - slot_was_set:
+    - name: Alice
+  - action: utter_greet_name
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_name
+  - intent: say_name
+  - intent: say_name
+  - action: utter_greet_name
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_name
+  - intent: say_name
+    entities:
+    - name: Jessica
+  - slot_was_set:
+    - name: Jessica
+  - action: utter_greet_name
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_name
+  - intent: say_name
+  - intent: say_name
+    entities:
+    - name: May
+  - action: utter_greet_name
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_name
+  - intent: say_name
+  - intent: say_name
+    entities:
+    - name: Ray
+  - action: utter_greet_name
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_name
+  - intent: say_name
+  - intent: say_name
+    entities:
+    - name: Ray
+  - action: utter_greet_name
