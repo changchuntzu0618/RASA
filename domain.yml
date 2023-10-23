@@ -1,16 +1,16 @@
 version: '3.1'
 
 intents:
-- affirm
-- bot_challenge
-- deny
-- go_to
-- goodbye
+- say_name
 - greet
-- inform
+- goodbye
+- affirm
+- deny
 - mood_great
 - mood_unhappy
-- say_name
+- bot_challenge
+- go_to
+- inform
 - thanks
 - check_id
 
@@ -113,3 +113,12 @@ actions:
 - utter_go
 - utter_no_problem
 - action_go_to
+- utter_greet_name
+- utter_ask_name
+- utter_cheer_up
+- utter_did_that_help
+- utter_goodbye
+- utter_iamabot
+- utter_book_time
+- utter_ask_id
+- utter_userid
