@@ -1,4 +1,4 @@
 /models
 /.rasa
- /actions/__pycache__
- *.pyc
+/actions/__pycache__
+*.pyc
