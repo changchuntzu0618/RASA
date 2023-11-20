@@ -1,7 +1,6 @@
 version: "3.1"
 
 stories:
-
 - story: basic greet
   steps:
   - intent: greet
@@ -13,6 +12,23 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
-  - intents: response_with_emotion
+  - intent: response_with_emotion
   - action: action_check_emotion
+
+- story: chat_with_emotion
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - checkpoint: ask_condition
+
+- story: happy_path
+  steps:
+  - checkpoint: ask_condition
+  - action: action_check_emotion
+
+- story: sad_path
+  steps:
+  - checkpoint: ask_condition
+  - action: action_check_emotion
+
 

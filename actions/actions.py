@@ -66,11 +66,15 @@ class ActionCheckEmotion(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        reponse = tracker.latest_message['entities'][0]['value']
-        if reponse['emotion'] == "excited":
-            dispatcher.utter_message(template="utter_response_excited")
-        elif reponse['emotion'] == "sad":
-            dispatcher.utter_message(template="utter_response_sad")
+        
+        # print(tracker.latest_message['text'])
+        emotion = tracker.latest_message['text'].split(";")[-1]
+        intent=tracker.latest_message['intent']['name']
+        # print('emotion: ', emotion)
+        if intent=='response_with_emotion':
+            if emotion == "happy" or "neutral":
+                dispatcher.utter_message(template="utter_response_happy")
+            elif emotion == "sad":
+                dispatcher.utter_message(template="utter_response_sad")
 
         return []
