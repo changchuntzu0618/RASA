@@ -58,3 +58,19 @@ class ActionGptJoke(Action):
 
         return []
 
+class ActionCheckEmotion(Action):
+
+    def name(self) -> Text:
+        return "action_check_emotion"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        reponse = tracker.latest_message['entities'][0]['value']
+        if reponse['emotion'] == "excited":
+            dispatcher.utter_message(template="utter_response_excited")
+        elif reponse['emotion'] == "sad":
+            dispatcher.utter_message(template="utter_response_sad")
+
+        return []

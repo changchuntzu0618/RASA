@@ -9,3 +9,10 @@ stories:
   - intent: ask_joke
   - action: action_gpt_joke
 
+- story: conversation with emotion
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intents: response_with_emotion
+  - action: action_check_emotion
+

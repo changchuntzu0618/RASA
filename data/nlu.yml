@@ -26,3 +26,23 @@ nlu:
     - give me a joke
     - i want to hear joke
     - can you tell me joke
+
+- intent: greet_emotion
+  examples: |
+    - hi [happy](emotion)
+    - hi [sad](emotion)
+    - hi [neutral](emotion)
+    - hello [happy](emotion)
+    - hello [sad](emotion)
+    - hello [neutral](emotion)
+    - hey [happy](emotion)
+    - hey [sad](emotion)
+    - hey [neutral](emotion)
+    - good morning [happy](emotion)
+    - good morning [sad](emotion)
+    - good morning [neutral](emotion)
+
+- intent: response_with_emotion
+  examples: |
+    - I finish my exam today.[sad](emotion)
+    - I finish my exam today.[excited](emotion)
