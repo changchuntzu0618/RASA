@@ -33,6 +33,7 @@ stories:
   - action: utter_response_happy
   - action: utter_think
   - action: action_gpt_joke
+  - checkpoint: check_joke_response
 
 - story: joke sad path
   steps:
@@ -43,40 +44,53 @@ stories:
   - action: utter_response_sad_joke
   - action: utter_think
   - action: action_gpt_joke
+  - checkpoint: check_joke_response
 
 - story: joke normal path
   steps:
   - checkpoint: check_emotion_joke
   - action: utter_think
   - action: action_gpt_joke
+  - checkpoint: check_joke_response
 
-- story: happy path
+- story: joke response 
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
-
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
+  - checkpoint: check_joke_response
+  - or:
+      - slot_was_set:
+        - emotion: sad
+      - slot_was_set:
+        - emotion: neutral
+  - action: utter_new_joke
   - action: action_gpt_joke
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
 
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: action_gpt_joke
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+# - story: happy path
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_great
+#   - action: utter_happy
+
+# - story: sad path 1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: action_gpt_joke
+#   - action: utter_did_that_help
+#   - intent: affirm
+#   - action: utter_happy
+
+# - story: sad path 2
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: action_gpt_joke
+#   - action: utter_did_that_help
+#   - intent: deny
+#   - action: utter_goodbye
 
 

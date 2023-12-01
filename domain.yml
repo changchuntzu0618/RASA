@@ -39,13 +39,15 @@ responses:
   utter_greet_name:
   - text: Nive to meet you, {name}!
   utter_ask_name:
-  - text: "What's your name?"
+  - text: What's your name?
   utter_response_happy:
   - text: Happy for you!
   utter_response_sad:
   - text: You look sad.
   utter_response_sad_joke:
   - text: Let me tell you a joke to make you happy.
+  utter_new_joke:
+  - text: Seems previous joke is not good, let me find a new one for you.
   utter_think:
   - text: Let me think about it
   utter_say_nothing:
@@ -84,3 +86,4 @@ actions:
 - utter_iamabot
 - utter_cheer_up
 - utter_did_that_help
+- utter_new_joke
