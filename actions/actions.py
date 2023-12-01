@@ -11,6 +11,7 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import SlotSet
 
 import os
 import openai
@@ -41,7 +42,8 @@ class ActionGptJoke(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        last_message = tracker.latest_message['text']
+        # last_message = tracker.latest_message['text']
+        # print('in action_gpt_joke')
 
         completion = self.openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
@@ -53,10 +55,31 @@ class ActionGptJoke(Action):
         )
 
         answer = completion.choices[0].message["content"]
+        # print('answer: ', answer)
 
         dispatcher.utter_message(text=answer)
 
         return []
+    
+class ActionSetEmotion(Action):
+
+    def name(self) -> Text:
+        return "action_set_emotion"
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        # print(tracker.latest_message)
+        try:
+            emotion_value = tracker.latest_message['entities'][0]['value']
+        except:
+            print('no emotion detected')
+        return [
+            SlotSet("emotion", emotion_value)
+        ]
 
 class ActionCheckEmotion(Action):
 

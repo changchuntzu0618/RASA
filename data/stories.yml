@@ -1,34 +1,82 @@
 version: "3.1"
 
 stories:
+
 - story: basic greet
   steps:
   - intent: greet
   - action: utter_greet
+  - action: utter_ask_name
+  - intent: say_name
+    entities:
+        - name
+  - action: utter_greet_name
+
+- story: set emotion
+  steps:
+  - intent: get_emotion
+    entities:
+      - emotion
+  - action: action_set_emotion
+
+
+- story: joke with emotion
+  steps:
   - intent: ask_joke
+  - checkpoint: check_emotion_joke
+
+- story: joke happy path
+  steps:
+  - checkpoint: check_emotion_joke
+  - slot_was_set:
+    - emotion: happy
+  - action: utter_response_happy
+  - action: utter_think
   - action: action_gpt_joke
 
-- story: conversation with emotion
+- story: joke sad path
+  steps:
+  - checkpoint: check_emotion_joke
+  - slot_was_set:
+    - emotion: sad
+  - action: utter_response_sad
+  - action: utter_response_sad_joke
+  - action: utter_think
+  - action: action_gpt_joke
+
+- story: joke normal path
+  steps:
+  - checkpoint: check_emotion_joke
+  - action: utter_think
+  - action: action_gpt_joke
+
+- story: happy path
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: response_with_emotion
-  - action: action_check_emotion
+  - intent: mood_great
+  - action: utter_happy
 
-- story: chat_with_emotion
+- story: sad path 1
   steps:
   - intent: greet
   - action: utter_greet
-  - checkpoint: ask_condition
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: action_gpt_joke
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
 
-- story: happy_path
+- story: sad path 2
   steps:
-  - checkpoint: ask_condition
-  - action: action_check_emotion
-
-- story: sad_path
-  steps:
-  - checkpoint: ask_condition
-  - action: action_check_emotion
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: action_gpt_joke
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
 
 

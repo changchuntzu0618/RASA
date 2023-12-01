@@ -6,29 +6,66 @@ intents:
 - response_with_emotion
 - mood_great
 - mood_unhappy
+- get_emotion
+- say_name
+- affirm
+- deny
 
 entities:
 - emotion
+- name
 
 slots:
   emotion:
+    type: categorical
+    values:
+      - happy
+      - sad
+      - neutral
+    influence_conversation: true
+    mappings:
+    - type: custom
+      action: action_set_emotion
+
+  name:
     type: text
     mappings:
-    - type: from_entity
-      entity: emotion
+      - type: from_entity
+        entity: name
 
 responses:
   utter_greet:
   - text: Hey! How are you?
+  utter_greet_name:
+  - text: Nive to meet you, {name}!
+  utter_ask_name:
+  - text: "What's your name?"
   utter_response_happy:
   - text: Happy for you!
   utter_response_sad:
-  - text: Sorry, I hope you are ok.
+  - text: You look sad.
+  utter_response_sad_joke:
+  - text: Let me tell you a joke to make you happy.
+  utter_think:
+  - text: Let me think about it
+  utter_say_nothing:
+  - text: Your emotion is {emotion}
+  utter_happy:
+  - text: Great!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_cheer_up:
+  - text: 'Let me find a joke to cheer you up'
+  utter_did_that_help:
+  - text: Did that help you?
+
 
 
 session_config:
   session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  carry_over_slots_to_new_session: false
 
 
 actions:
@@ -38,3 +75,12 @@ actions:
 - action_check_emotion
 - utter_response_happy
 - utter_response_sad
+- utter_think
+- utter_say_nothing
+- action_set_emotion
+- utter_response_sad_joke
+- utter_happy
+- utter_goodbye
+- utter_iamabot
+- utter_cheer_up
+- utter_did_that_help

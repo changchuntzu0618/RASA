@@ -16,6 +16,24 @@ nlu:
     - goodevening
     - good afternoon
 
+- intent: say_name
+  examples: |
+    - My name is [Jessica](name)
+    - My name is [David](name)
+    - I'm [Bob](name)
+    - I am [John](name)
+    - People call me [Sam](name)
+    - It's [Mike](name)
+    - Usually people call me [Daniel](name)
+    - My name is [Daniel](name)
+    - I'm [Daniel](name)
+    - I am [Daniel](name)
+    - People call me [Daniel](name)
+    - It's [Daniel](name)
+    - Usually people call me [Daniel](name)
+    - My name is [Alex](name)
+    - I'm [Alex](name)
+
 - intent: ask_joke 
   examples: |
     - tell me a joke
@@ -31,6 +49,12 @@ nlu:
 - intent: response_with_emotion
   examples: |
     - I finish my exam today
+
+- intent: get_emotion
+  examples: |
+    - I am feeling [happy](emotion)
+    - I am feeling [sad](emotion)
+    - I am feeling [neutral](emotion)
 
 - intent: mood_great
   examples: |
@@ -65,4 +89,24 @@ nlu:
     - extremly sad
     - so saad
     - so sad
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - good
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
 
