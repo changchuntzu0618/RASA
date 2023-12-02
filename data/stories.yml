@@ -6,23 +6,28 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
-  - action: utter_ask_name
+
+- story: greet name
+  steps:
   - intent: say_name
     entities:
         - name
   - action: utter_greet_name
-
-- story: set emotion
-  steps:
-  - intent: get_emotion
-    entities:
-      - emotion
-  - action: action_set_emotion
+# - story: set emotion
+#   steps:
+#   - intent: get_emotion
+#     entities:
+#       - emotion
+#   - action: action_set_emotion
 
 
 - story: joke with emotion
   steps:
   - intent: ask_joke
+  - intent: get_emotion
+    entities:
+      - emotion
+  - action: action_set_emotion
   - checkpoint: check_emotion_joke
 
 - story: joke happy path
@@ -33,7 +38,11 @@ stories:
   - action: utter_response_happy
   - action: utter_think
   - action: action_gpt_joke
-  - checkpoint: check_joke_response
+  - intent: get_emotion
+    entities:
+      - emotion
+  - action: action_set_emotion
+  - action: action_joke_response
 
 - story: joke sad path
   steps:
@@ -44,25 +53,37 @@ stories:
   - action: utter_response_sad_joke
   - action: utter_think
   - action: action_gpt_joke
-  - checkpoint: check_joke_response
+  - intent: get_emotion
+    entities:
+      - emotion
+  - action: action_set_emotion
+  - action: action_joke_response
 
 - story: joke normal path
   steps:
   - checkpoint: check_emotion_joke
   - action: utter_think
   - action: action_gpt_joke
-  - checkpoint: check_joke_response
+  - intent: get_emotion
+    entities:
+      - emotion
+  - action: action_set_emotion
+  - action: action_joke_response
 
-- story: joke response 
-  steps:
-  - checkpoint: check_joke_response
-  - or:
-      - slot_was_set:
-        - emotion: sad
-      - slot_was_set:
-        - emotion: neutral
-  - action: utter_new_joke
-  - action: action_gpt_joke
+# - story: joke response 
+#   steps:
+#   - checkpoint: check_joke_response
+#   - intent: get_emotion
+#     entities:
+#       - emotion
+#   - action: action_set_emotion
+#   - or:
+#       - slot_was_set:
+#         - emotion: sad
+#       - slot_was_set:
+#         - emotion: neutral
+#   - action: utter_new_joke
+#   - action: action_gpt_joke
 
 # - story: happy path
 #   steps:

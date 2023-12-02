@@ -37,7 +37,7 @@ responses:
   utter_greet:
   - text: Hey! How are you?
   utter_greet_name:
-  - text: Nive to meet you, {name}!
+  - text: Nice to meet you, {name}!
   utter_ask_name:
   - text: What's your name?
   utter_response_happy:
@@ -46,6 +46,8 @@ responses:
   - text: You look sad.
   utter_response_sad_joke:
   - text: Let me tell you a joke to make you happy.
+  utter_response_happy_joke:
+  - text: I'm glad this joke makes you happy.
   utter_new_joke:
   - text: Seems previous joke is not good, let me find a new one for you.
   utter_think:
@@ -57,11 +59,13 @@ responses:
   utter_goodbye:
   - text: Bye
   utter_iamabot:
-  - text: I am a bot, powered by Rasa.
+  - text: Hi! I am a bot, powered by Rasa.
   utter_cheer_up:
   - text: 'Let me find a joke to cheer you up'
   utter_did_that_help:
   - text: Did that help you?
+  utter_please_rephrase:
+  - text: I'm sorry, I didn't quite understand that. Could you rephrase?
 
 
 
@@ -87,3 +91,7 @@ actions:
 - utter_cheer_up
 - utter_did_that_help
 - utter_new_joke
+- action_set_no_emotion
+- utter_please_rephrase
+- action_joke_response
+- utter_response_happy_joke

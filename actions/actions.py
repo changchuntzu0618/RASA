@@ -11,7 +11,9 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import UserUtteranceReverted
 from rasa_sdk.events import SlotSet
+from rasa_sdk.events import FollowupAction
 
 import os
 import openai
@@ -74,12 +76,68 @@ class ActionSetEmotion(Action):
     ) -> List[Dict[Text, Any]]:
         # print(tracker.latest_message)
         try:
-            emotion_value = tracker.latest_message['entities'][0]['value']
+            emotion_value = tracker.latest_message['entities'][0]['value'] if tracker.latest_message['entities'][0]['entity'] == 'emotion' else None
         except:
             print('no emotion detected')
         return [
             SlotSet("emotion", emotion_value)
         ]
+    
+class ActionSetNoEmotion(Action):
+
+    def name(self) -> Text:
+        return "action_set_no_emotion"
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        # print(tracker.latest_message)
+        
+        return [
+            SlotSet("emotion", None)
+        ]
+
+class ActionJokeResponse(Action):
+
+    def name(self) -> Text:
+        return "action_joke_response"
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        # print(tracker.latest_message)
+        emotion_value = tracker.get_slot('emotion')
+
+        if emotion_value == "happy" :
+                dispatcher.utter_message(template="utter_response_happy_joke")
+                return []
+        elif emotion_value == "sad" or "neutral":
+            dispatcher.utter_message(template="utter_new_joke")
+            return [FollowupAction("action_gpt_joke")]
+    
+class ActionDefaultFallback(Action):
+    """Executes the fallback action and goes back to the previous state
+    of the dialogue"""
+
+    def name(self) -> Text:
+        return "action_default_fallback"
+
+    async def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(template="utter_please_rephrase")
+
+        # Revert user message which led to fallback.
+        return [UserUtteranceReverted()]
 
 class ActionCheckEmotion(Action):
 
