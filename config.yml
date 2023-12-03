@@ -69,7 +69,7 @@ pipeline:
 # If you'd like to customize them, uncomment and adjust the policies.
 # See https://rasa.com/docs/rasa/policies for more information.
 policies:
-  - name: AugmentedMemoizationPolicy #MemoizationPolicy
+  - name: MemoizationPolicy #AugmentedMemoizationPolicy
   - name: RulePolicy
     core_fallback_threshold: 0.4
     core_fallback_action_name: "action_default_fallback"

@@ -58,7 +58,7 @@ class ActionGptJoke(Action):
             3. Do not provide the joke which is provided before, here is a list of joke provided before(if the list is empty, it means that there is no joke provided before):"
         previos_jokes = ';'.join(self.previos_jokes)
         content += previos_jokes
-        print('content: ', content)
+        # print('content: ', content)
 
         completion = self.openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
