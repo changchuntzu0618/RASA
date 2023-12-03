@@ -38,6 +38,7 @@ class ActionGptJoke(Action):
     def name(self) -> Text:
         self.openai=openai
         self.openai.api_key = os.getenv("OPENAI_API_KEY")
+        self.previos_jokes = []
         return "action_gpt_joke"
 
     def run(self, dispatcher: CollectingDispatcher,
@@ -46,17 +47,22 @@ class ActionGptJoke(Action):
         
         # last_message = tracker.latest_message['text']
         # print('in action_gpt_joke')
+        content="You are a joke provider. Provide one joke to make people happy, Only one joke. Remember,do not provide the joke which is provided before, here is a list of joke provided before (if the list is empty, it means that there is no joke provided before):"
+        previos_jokes = ';'.join(self.previos_jokes)
+        content += previos_jokes
+        print('content: ', content)
 
         completion = self.openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are a joke provider. Provide a new joke everytime to make people happy. Remember, do not provide the joke which is provided before"},
+                {"role": "system", "content": content},
                 # {"role": "user", "content":last_message},
             ],
             temperature=1.5,
         )
 
         answer = completion.choices[0].message["content"]
+        self.previos_jokes.append(answer)
         # print('answer: ', answer)
 
         dispatcher.utter_message(text=answer)
@@ -77,11 +83,12 @@ class ActionSetEmotion(Action):
         # print(tracker.latest_message)
         try:
             emotion_value = tracker.latest_message['entities'][0]['value'] if tracker.latest_message['entities'][0]['entity'] == 'emotion' else None
+            print('emotion: ', emotion_value)
+            return [SlotSet("emotion", emotion_value)]
         except:
             print('no emotion detected')
-        return [
-            SlotSet("emotion", emotion_value)
-        ]
+            return []
+        
     
 class ActionSetNoEmotion(Action):
 
