@@ -47,7 +47,15 @@ class ActionGptJoke(Action):
         
         # last_message = tracker.latest_message['text']
         # print('in action_gpt_joke')
-        content="You are a joke provider. Provide one joke to make people happy, Only one joke. Remember,do not provide the joke which is provided before, here is a list of joke provided before (if the list is empty, it means that there is no joke provided before):"
+        content="You are a joke provider. Provide one joke to make people happy. Rlue: \
+            1. Only give me one joke. \
+            2. The format of joke should be: \
+                Joke question. \
+                Joke answer. \
+                For example: \
+                    What do you call a pig that does karate? \
+                    A pork chop. \
+            3. Do not provide the joke which is provided before, here is a list of joke provided before(if the list is empty, it means that there is no joke provided before):"
         previos_jokes = ';'.join(self.previos_jokes)
         content += previos_jokes
         print('content: ', content)

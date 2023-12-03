@@ -1,5 +1,12 @@
 version: "3.1"
 nlu:
+
+- lookup: emotion
+  examples: |
+    - happy
+    - sad
+    - neutral
+
 - intent: greet
   examples: |
     - hey
@@ -18,21 +25,21 @@ nlu:
 
 - intent: say_name
   examples: |
-    - My name is [Jessica](name)
-    - My name is [David](name)
-    - I'm [Bob](name)
-    - I am [John](name)
-    - People call me [Sam](name)
-    - It's [Mike](name)
-    - Usually people call me [Daniel](name)
-    - My name is [Daniel](name)
-    - I'm [Daniel](name)
-    - I am [Daniel](name)
-    - People call me [Daniel](name)
-    - It's [Daniel](name)
-    - Usually people call me [Daniel](name)
-    - My name is [Alex](name)
-    - I'm [Alex](name)
+    - My name is [Jessica](PERSON)
+    - My name is [David](PERSON)
+    - I'm [Bob](PERSON)
+    - I am [John](PERSON)
+    - People call me [Sam](PERSON)
+    - It's [Mike](PERSON)
+    - Usually people call me [Daniel](PERSON)
+    - My name is [Daniel](PERSON)
+    - I'm [Daniel](PERSON)
+    - I am [Daniel](PERSON)
+    - People call me [Daniel](PERSON)
+    - It's [Daniel](PERSON)
+    - Usually people call me [Daniel](PERSON)
+    - My name is [Alex](PERSON)
+    - I'm [Alex](PERSON)
 
 - intent: ask_joke 
   examples: |

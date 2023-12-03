@@ -12,7 +12,7 @@ intents:
 - deny
 
 entities:
-- emotion
+- PERSON
 - name
 
 slots:
@@ -27,17 +27,17 @@ slots:
     - type: custom
       action: action_set_emotion
 
-  name:
+  PERSON:
     type: text
     mappings:
       - type: from_entity
-        entity: name
+        entity: PERSON
 
 responses:
   utter_greet:
   - text: Hey! How are you?
   utter_greet_name:
-  - text: Nice to meet you, {name}!
+  - text: Nice to meet you, {PERSON}!
   utter_ask_name:
   - text: What's your name?
   utter_response_happy:
