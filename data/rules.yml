@@ -7,7 +7,11 @@ rules:
   steps:
   - intent: greet
   - action: utter_iamabot
-  - action: utter_ask_name
+
+- rule: Say `hello` whenever the user sends a message with intent `greet`
+  steps:
+  - intent: greet
+  - action: utter_greet
 
 
 # - rule: set emotion every time the user sad "I am feeling [emotion]"

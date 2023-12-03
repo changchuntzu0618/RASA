@@ -76,6 +76,8 @@ session_config:
 
 actions:
 - utter_greet
+- utter_greet_name
+- utter_ask_name
 - action_hello_world
 - action_gpt_joke
 - action_check_emotion
@@ -95,3 +97,4 @@ actions:
 - utter_please_rephrase
 - action_joke_response
 - utter_response_happy_joke
+- action_default_fallback

@@ -2,10 +2,10 @@ version: "3.1"
 
 stories:
 
-- story: basic greet
-  steps:
-  - intent: greet
-  - action: utter_greet
+# - story: basic greet
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
 
 - story: greet name
   steps:
@@ -69,21 +69,6 @@ stories:
       - emotion
   - action: action_set_emotion
   - action: action_joke_response
-
-# - story: joke response 
-#   steps:
-#   - checkpoint: check_joke_response
-#   - intent: get_emotion
-#     entities:
-#       - emotion
-#   - action: action_set_emotion
-#   - or:
-#       - slot_was_set:
-#         - emotion: sad
-#       - slot_was_set:
-#         - emotion: neutral
-#   - action: utter_new_joke
-#   - action: action_gpt_joke
 
 # - story: happy path
 #   steps:
