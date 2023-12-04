@@ -21,6 +21,7 @@ stories:
 - story: joke with emotion
   steps:
   - intent: ask_joke
+  - action: utter_detect_emotion
   - intent: get_emotion
     entities:
       - emotion
@@ -34,12 +35,16 @@ stories:
     - emotion: happy
   - action: utter_response_happy
   - action: utter_think
+  - intent: generate_chatgpt
   - action: action_gpt_joke
+  - action: utter_detect_emotion
   - intent: get_emotion
     entities:
       - emotion
   - action: action_set_emotion
   - action: action_joke_response
+  - intent: generate_chatgpt
+  - action: action_gpt_joke
 
 - story: joke sad path
   steps:
@@ -49,23 +54,31 @@ stories:
   - action: utter_response_sad
   - action: utter_response_sad_joke
   - action: utter_think
+  - intent: generate_chatgpt
   - action: action_gpt_joke
+  - action: utter_detect_emotion
   - intent: get_emotion
     entities:
       - emotion
   - action: action_set_emotion
   - action: action_joke_response
+  - intent: generate_chatgpt
+  - action: action_gpt_joke
 
 - story: joke normal path
   steps:
   - checkpoint: check_emotion_joke
   - action: utter_think
+  - intent: generate_chatgpt
   - action: action_gpt_joke
+  - action: utter_detect_emotion
   - intent: get_emotion
     entities:
       - emotion
   - action: action_set_emotion
   - action: action_joke_response
+  - intent: generate_chatgpt
+  - action: action_gpt_joke
 
 - story: happy path
   steps:
@@ -76,6 +89,8 @@ stories:
   steps:
   - intent: mood_unhappy
   - action: utter_cheer_up
+  - action: utter_think
+  - intent: generate_chatgpt
   - action: action_gpt_joke
   - action: utter_did_that_help
   - intent: affirm
@@ -85,9 +100,13 @@ stories:
   steps:
   - intent: mood_unhappy
   - action: utter_cheer_up
+  - action: utter_think
+  - intent: generate_chatgpt
   - action: action_gpt_joke
   - action: utter_did_that_help
   - intent: deny
   - action: utter_new_joke
+  - action: utter_think
+  - intent: generate_chatgpt
   - action: action_gpt_joke
 

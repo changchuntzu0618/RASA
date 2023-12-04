@@ -134,7 +134,8 @@ class ActionJokeResponse(Action):
                 return []
         elif emotion_value == "sad" or "neutral":
             dispatcher.utter_message(template="utter_new_joke")
-            return [FollowupAction("action_gpt_joke")]
+            dispatcher.utter_message(template="utter_think")
+            return []
     
 class ActionDefaultFallback(Action):
     """Executes the fallback action and goes back to the previous state

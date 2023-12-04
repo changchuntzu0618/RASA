@@ -10,6 +10,7 @@ intents:
 - say_name
 - affirm
 - deny
+- generate_chatgpt
 
 entities:
 - PERSON
@@ -66,6 +67,8 @@ responses:
   - text: Did that help you?
   utter_please_rephrase:
   - text: I'm sorry, I didn't quite understand that. Could you rephrase?
+  utter_detect_emotion:
+  - text: detect emotion
 
 
 
@@ -98,3 +101,4 @@ actions:
 - action_joke_response
 - utter_response_happy_joke
 - action_default_fallback
+- utter_detect_emotion

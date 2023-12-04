@@ -75,9 +75,9 @@ policies:
     core_fallback_action_name: "action_default_fallback"
     enable_fallback_prediction: true
   - name: UnexpecTEDIntentPolicy
-    max_history: 5
+    max_history: 4
     epochs: 200
   - name: TEDPolicy
-    max_history: 5
+    max_history: 4
     epochs: 200
     constrain_similarities: true

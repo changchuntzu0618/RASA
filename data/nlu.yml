@@ -118,3 +118,17 @@ nlu:
     - no way
     - not really
 
+- intent: generate_chatgpt
+  examples: |
+    - start chatgpt
+    - start chatgpt
+    - start chatgpt
+    - start chatgpt
+    - start chatgpt
+    - start chatgpt
+    - start chatgpt
+    - start chatgpt
+    - start chatgpt
+    - start chatgpt
+    - start chatgpt
+
