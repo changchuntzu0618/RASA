@@ -15,6 +15,7 @@ intents:
 entities:
 - PERSON
 - name
+- emotion
 
 slots:
   emotion:

@@ -128,11 +128,12 @@ class ActionJokeResponse(Action):
     ) -> List[Dict[Text, Any]]:
         # print(tracker.latest_message)
         emotion_value = tracker.get_slot('emotion')
+        print('emotion: ', emotion_value)
 
-        if emotion_value == "happy" :
+        if emotion_value == "happy" or emotion_value ==  "neutral" :
                 dispatcher.utter_message(template="utter_response_happy_joke")
                 return []
-        elif emotion_value == "sad" or "neutral":
+        elif emotion_value == "sad":
             dispatcher.utter_message(template="utter_new_joke")
             dispatcher.utter_message(template="utter_think")
             return []
