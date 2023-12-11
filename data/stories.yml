@@ -21,7 +21,7 @@ stories:
 - story: joke with emotion
   steps:
   - intent: ask_joke
-  - action: utter_detect_emotion
+  - action: utter_detect_emotion_user
   - intent: get_emotion
     entities:
       - emotion
@@ -37,7 +37,7 @@ stories:
   - action: utter_think
   - intent: generate_chatgpt
   - action: action_gpt_joke
-  - action: utter_detect_emotion
+  - action: utter_detect_emotion_pepper
   - intent: get_emotion
     entities:
       - emotion
@@ -56,7 +56,7 @@ stories:
   - action: utter_think
   - intent: generate_chatgpt
   - action: action_gpt_joke
-  - action: utter_detect_emotion
+  - action: utter_detect_emotion_pepper
   - intent: get_emotion
     entities:
       - emotion
@@ -73,7 +73,7 @@ stories:
   - action: utter_think
   - intent: generate_chatgpt
   - action: action_gpt_joke
-  - action: utter_detect_emotion
+  - action: utter_detect_emotion_pepper
   - intent: get_emotion
     entities:
       - emotion

@@ -67,8 +67,10 @@ responses:
   - text: Did that help you?
   utter_please_rephrase:
   - text: I'm sorry, I didn't quite understand that. Could you rephrase?
-  utter_detect_emotion:
-  - text: detect emotion
+  utter_detect_emotion_user:
+  - text: detect emotion user
+  utter_detect_emotion_pepper:
+  - text: detect emotion pepper
 
 
 
@@ -101,4 +103,5 @@ actions:
 - action_joke_response
 - utter_response_happy_joke
 - action_default_fallback
-- utter_detect_emotion
+- utter_detect_emotion_user
+- utter_detect_emotion_pepper

@@ -62,6 +62,25 @@ nlu:
     - I am feeling [happy](emotion)
     - I am feeling [sad](emotion)
     - I am feeling [neutral](emotion)
+    - I am feeling [happy](emotion)
+    - I am feeling [sad](emotion)
+    - I am feeling [neutral](emotion)
+    - I am feeling [happy](emotion)
+    - I am feeling [sad](emotion)
+    - I am feeling [neutral](emotion)
+    - I am feeling [happy](emotion)
+    - I am feeling [sad](emotion)
+    - I am feeling [neutral](emotion)
+    - I am feeling [happy](emotion)
+    - I am feeling [sad](emotion)
+    - I am feeling [neutral](emotion)
+    - I am feeling [happy](emotion)
+    - I am feeling [sad](emotion)
+    - I am feeling [neutral](emotion)
+    - I am feeling [happy](emotion)
+    - I am feeling [sad](emotion)
+    - I am feeling [neutral](emotion)
+    
 
 - intent: mood_great
   examples: |
