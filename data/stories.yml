@@ -65,9 +65,11 @@ stories:
   - intent: generate_chatgpt
   - action: action_gpt_joke
 
-- story: joke normal path
+- story: joke neutral path
   steps:
   - checkpoint: check_emotion_joke
+  - slot_was_set:
+    - emotion: neutral
   - action: utter_think
   - intent: generate_chatgpt
   - action: action_gpt_joke
