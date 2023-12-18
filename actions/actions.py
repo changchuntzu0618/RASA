@@ -47,7 +47,7 @@ class ActionGptJoke(Action):
         
         # last_message = tracker.latest_message['text']
         # print('in action_gpt_joke')
-        content="You are a joke provider. Provide one joke to make people happy. Rlue: \
+        content="You are a joke provider. Provide one joke to make people happy. Rule: \
             1. Only give me one joke. \
             2. The format of joke should be: \
                 Joke question. \
@@ -130,9 +130,12 @@ class ActionJokeResponse(Action):
         emotion_value = tracker.get_slot('emotion')
         print('emotion: ', emotion_value)
 
-        if emotion_value == "happy" or emotion_value ==  "neutral" :
-                dispatcher.utter_message(template="utter_response_happy_joke")
-                return []
+        if emotion_value == "happy":
+            dispatcher.utter_message(template="utter_response_happy_joke")
+            return []
+        elif emotion_value ==  "neutral" :
+            dispatcher.utter_message(template="utter_response_neutral_joke")
+            return []
         elif emotion_value == "sad":
             dispatcher.utter_message(template="utter_new_joke")
             dispatcher.utter_message(template="utter_think")
@@ -156,23 +159,23 @@ class ActionDefaultFallback(Action):
         # Revert user message which led to fallback.
         return [UserUtteranceReverted()]
 
-class ActionCheckEmotion(Action):
+# class ActionCheckEmotion(Action):
 
-    def name(self) -> Text:
-        return "action_check_emotion"
+#     def name(self) -> Text:
+#         return "action_check_emotion"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
-        # print(tracker.latest_message['text'])
-        emotion = tracker.latest_message['text'].split(";")[-1]
-        intent=tracker.latest_message['intent']['name']
-        # print('emotion: ', emotion)
-        if intent=='response_with_emotion':
-            if emotion == "happy" or "neutral":
-                dispatcher.utter_message(template="utter_response_happy")
-            elif emotion == "sad":
-                dispatcher.utter_message(template="utter_response_sad")
+#         # print(tracker.latest_message['text'])
+#         emotion = tracker.latest_message['text'].split(";")[-1]
+#         intent=tracker.latest_message['intent']['name']
+#         # print('emotion: ', emotion)
+#         if intent=='response_with_emotion':
+#             if emotion == "happy" or "neutral":
+#                 dispatcher.utter_message(template="utter_response_happy")
+#             elif emotion == "sad":
+#                 dispatcher.utter_message(template="utter_response_sad")
 
-        return []
+#         return []

@@ -43,13 +43,15 @@ responses:
   utter_ask_name:
   - text: What's your name?
   utter_response_happy:
-  - text: Happy for you!
+  - text: You look happy!
   utter_response_sad:
   - text: You look sad.
   utter_response_sad_joke:
   - text: Let me tell you a joke to make you happy.
   utter_response_happy_joke:
   - text: I'm glad this joke makes you happy.
+  utter_response_neutral_joke:
+  - text: I hope this joke makes you happy.
   utter_new_joke:
   - text: Seems previous joke is not good, let me find a new one for you.
   utter_think:
@@ -86,7 +88,6 @@ actions:
 - utter_ask_name
 - action_hello_world
 - action_gpt_joke
-- action_check_emotion
 - utter_response_happy
 - utter_response_sad
 - utter_think
@@ -106,3 +107,4 @@ actions:
 - action_default_fallback
 - utter_detect_emotion_user
 - utter_detect_emotion_pepper
+- utter_response_neutral_joke
