@@ -34,6 +34,11 @@ class ActionHelloWorld(Action):
     
 
 class ActionGptJoke(Action):
+    """
+    Custom action for providing jokes using the OpenAI GPT-3.5 Turbo model. It communicates with the model
+    to generate a new joke based on specific rules. The rules include requesting a single joke in a specified
+    format and avoiding repetition of jokes provided before.
+    """
 
     def name(self) -> Text:
         self.openai=openai
@@ -76,6 +81,9 @@ class ActionGptJoke(Action):
         return []
     
 class ActionSetEmotion(Action):
+    """
+    Custom action for setting the 'emotion' slot based on detected entities in the latest user message.
+    """
 
     def name(self) -> Text:
         return "action_set_emotion"
@@ -113,6 +121,9 @@ class ActionSetNoEmotion(Action):
         ]
 
 class ActionJokeResponse(Action):
+    """
+    Custom action for providing differnt response based on the detected emotion.
+    """
 
     def name(self) -> Text:
         return "action_joke_response"
@@ -138,8 +149,9 @@ class ActionJokeResponse(Action):
             return []
     
 class ActionDefaultFallback(Action):
-    """Executes the fallback action and goes back to the previous state
-    of the dialogue"""
+    """
+    Executes the fallback action and goes back to the previous state of the dialogue.
+    """
 
     def name(self) -> Text:
         return "action_default_fallback"
