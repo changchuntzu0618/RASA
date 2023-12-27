@@ -1,4 +1,5 @@
-/models
+/models/*
+!/models/20231218-135055-pepper-idiap_v2.tar.gz
 /.rasa
 /actions/__pycache__
 *.pyc
