@@ -64,14 +64,12 @@ class ActionGptJoke(Action):
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": content},
-                # {"role": "user", "content":last_message},
             ],
             temperature=1.5,
         )
 
         answer = completion.choices[0].message["content"]
         self.previos_jokes.append(answer)
-        # print('answer: ', answer)
 
         dispatcher.utter_message(text=answer)
 
@@ -88,7 +86,7 @@ class ActionSetEmotion(Action):
         tracker: Tracker,
         domain: Dict[Text, Any]
     ) -> List[Dict[Text, Any]]:
-        # print(tracker.latest_message)
+
         try:
             emotion_value = tracker.latest_message['entities'][0]['value'] if tracker.latest_message['entities'][0]['entity'] == 'emotion' else None
             print('emotion: ', emotion_value)
@@ -109,7 +107,6 @@ class ActionSetNoEmotion(Action):
         tracker: Tracker,
         domain: Dict[Text, Any]
     ) -> List[Dict[Text, Any]]:
-        # print(tracker.latest_message)
         
         return [
             SlotSet("emotion", None)
@@ -126,7 +123,6 @@ class ActionJokeResponse(Action):
         tracker: Tracker,
         domain: Dict[Text, Any]
     ) -> List[Dict[Text, Any]]:
-        # print(tracker.latest_message)
         emotion_value = tracker.get_slot('emotion')
         print('emotion: ', emotion_value)
 
@@ -158,24 +154,3 @@ class ActionDefaultFallback(Action):
 
         # Revert user message which led to fallback.
         return [UserUtteranceReverted()]
-
-# class ActionCheckEmotion(Action):
-
-#     def name(self) -> Text:
-#         return "action_check_emotion"
-
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-#         # print(tracker.latest_message['text'])
-#         emotion = tracker.latest_message['text'].split(";")[-1]
-#         intent=tracker.latest_message['intent']['name']
-#         # print('emotion: ', emotion)
-#         if intent=='response_with_emotion':
-#             if emotion == "happy" or "neutral":
-#                 dispatcher.utter_message(template="utter_response_happy")
-#             elif emotion == "sad":
-#                 dispatcher.utter_message(template="utter_response_sad")
-
-#         return []
