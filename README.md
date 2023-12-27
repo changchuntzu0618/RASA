@@ -12,3 +12,6 @@ This file contains and defines NLU training data used for this project.
 
 #### [Action](./actions/actions.py)
 This file includes the necessary custom action functions for the system.
+
+#### [Trained model](./models/20231218-135055-pepper-idiap_v2.tar.gz)
+A trained model used in the project.
